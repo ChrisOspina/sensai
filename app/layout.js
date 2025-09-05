@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className}`}
       >
-        <ClerkProvider appearance={{baseTheme: "dark"}}>
+        <ClerkProvider appearance={{baseTheme: dark}}>
 
            <ThemeProvider
             attribute="class"
