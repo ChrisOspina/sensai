@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className}`}
       >
-        <ClerkProvider>
+        <ClerkProvider appearance={{baseTheme: "dark"}}>
 
            <ThemeProvider
             attribute="class"
