@@ -1,12 +1,32 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, use } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
 const HeroSection = () => {
   const imageRef = useRef();
+
+  useEffect(() => {
+    const imageElement = imageRef.current;
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const scrollThreshold = 100; // Adjust this value to control when the image starts moving up
+
+      if (scrollPosition > scrollThreshold) {
+        imageElement.classList.add("scrolled");
+      } else {
+        imageElement.classList.remove("scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <section className="w-full pt-36 md:pt-48 pb-10">
