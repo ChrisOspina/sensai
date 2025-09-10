@@ -18,7 +18,7 @@ export async function updateUser(data){
 
         const result = await db.$transaction(
             async(tx)=>{
-                let industryInsight = await tx.industryInsights.findUnique({
+                let industryInsight = await tx.industryInsight.findUnique({
                     where:{
                         industry: data.industry,
                     },
@@ -26,16 +26,16 @@ export async function updateUser(data){
 
         // If industry doesn't exist, create it with default values
         if (!industryInsight) {
-          const insights = await generateAIInsights(data.industry);
+          //const insights = await generateAIInsights(data.industry);
 
           industryInsight = await db.industryInsight.create({
             data: { //Default values
               industry: data.industry,
               salaryRanges: [],
               growthRate: 0,
-              demandLevel: "Medium",
+              demandLevel: "MEDIUM",
               topSkills:[],
-              marketOutlook: "Neutral",
+              marketOutlook: "NEUTRAL",
               recommendedSkills: [],
               nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             },
@@ -62,12 +62,12 @@ export async function updateUser(data){
             }
         );
 
-        return result.user;
+        return {success: true, ...result};
 
     }
     catch(error){
         console.error("Error updating user and industry:", error.message);
-        throw new Error("failed to update profile");
+        throw new Error("failed to update profile: " + error.message);
     }
 }
 

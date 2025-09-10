@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const onboardingSchema = z.object({
-    indstry: z.string({
+    industry: z.string({
         required_error: "Please select an industry",
     }),
     subIndustry: z.string({
