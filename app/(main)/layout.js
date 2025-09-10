@@ -1,10 +1,10 @@
 import React from 'react'
 
-const MainLayout=()=> {
+const MainLayout= async ({children})=> {
 
     //Redirect to onboarding
     return (
-        <div></div>
+        <div className="container mx-auto mt-24 mb-20">{children}</div>
     )
 }
 
