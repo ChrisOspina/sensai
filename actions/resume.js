@@ -1,3 +1,5 @@
+"use server";
+
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
@@ -98,6 +100,4 @@ export async function improveWithAI({current, type}) {
     console.error("Error improving content:", error);
     throw new Error("Failed to improve content");
   }
-    
-    
 }
