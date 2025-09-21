@@ -11,6 +11,7 @@ import useFetch from "@/hooks/use-fetch";
 import { saveResume } from "@/actions/resume";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import EntryForm from "./entry-form";
 
 const ResumeBuilder = ({ initialContent }) => {
   const [activeTab, setActiveTab] = useState("edit");
@@ -73,7 +74,7 @@ const ResumeBuilder = ({ initialContent }) => {
           <TabsTrigger value="preview">Markdown</TabsTrigger>
         </TabsList>
         <TabsContent value="edit">
-          <form className="space-y-8" onSubmit={handleSubmit(onsubmit)}>
+          <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Contact information</h3>
               <div
@@ -135,7 +136,7 @@ const ResumeBuilder = ({ initialContent }) => {
                     placeholder="https://twitter.com/your-handle"
                   />
 
-                  {errors.contactInfo?.email && (
+                  {errors.contactInfo?.twitter && (
                     <p className="text-sm text-red-500">
                       {errors.contactInfo.twitter.message}
                     </p>
@@ -188,42 +189,57 @@ const ResumeBuilder = ({ initialContent }) => {
                 name="experience"
                 control={control}
                 render={({ field }) => (
-                  
-
+                  <EntryForm
+                    type={"Experience"}
+                    entries={field.value}
+                    onChange={field.onChange}
+                  />
                 )}
               />
               {errors.experience && (
-                <p className="text-sm text-red-500">{errors.experience.message}</p>
+                <p className="text-sm text-red-500">
+                  {errors.experience.message}
+                </p>
               )}
             </div>
 
-             <div className="space-y-4">
+            <div className="space-y-4">
               <h3 className="text-lg font-medium">Education</h3>
               <Controller
                 name="education"
                 control={control}
                 render={({ field }) => (
-                  
-
+                  <EntryForm
+                    type={"Education"}
+                    entries={field.value}
+                    onChange={field.onChange}
+                  />
                 )}
               />
               {errors.education && (
-                <p className="text-sm text-red-500">{errors.education.message}</p>
+                <p className="text-sm text-red-500">
+                  {errors.education.message}
+                </p>
               )}
             </div>
 
-             <div className="space-y-4">
+            <div className="space-y-4">
               <h3 className="text-lg font-medium">Projects</h3>
               <Controller
                 name="experience"
                 control={control}
                 render={({ field }) => (
-                  
-
+                  <EntryForm
+                    type={"Projects"}
+                    entries={field.value}
+                    onChange={field.onChange}
+                  />
                 )}
               />
               {errors.projects && (
-                <p className="text-sm text-red-500">{errors.projects.message}</p>
+                <p className="text-sm text-red-500">
+                  {errors.projects.message}
+                </p>
               )}
             </div>
           </form>
