@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { checkAuth } from "./check-auth";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
@@ -11,15 +12,8 @@ const model = genAI.getGenerativeModel({
 })
 
 export async function saveResume(content) {
-     const {userId} = await auth();
-      if (!userId) throw new Error("Unauthorized");
-    
-      const user = await db.user.findUnique({
-        where: { clerkUserId: userId },
-      });
-    
-      if (!user) throw new Error("User not found");
 
+    const user = await checkAuth();
       try{
         const resume = await db.resume.upsert({
             where:{
@@ -44,14 +38,7 @@ export async function saveResume(content) {
 }
 
 export async function getResume(){
-      const {userId} = await auth();
-      if (!userId) throw new Error("Unauthorized");
-    
-      const user = await db.user.findUnique({
-        where: { clerkUserId: userId },
-      });
-    
-      if (!user) throw new Error("User not found");
+      const user = await checkAuth();
 
       return await db.resume.findUnique({
         where:{

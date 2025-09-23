@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
+import { checkAuth } from "./check-auth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -10,16 +11,7 @@ const model = genAI.getGenerativeModel({
 })
 
 export async function generateQuiz(){
-    const {userId} = await auth();
-    if(!userId) throw new Error("Unauthorized");
-
-    const user = await db.user.findUnique({
-        where:{
-            clerkUserId: userId,
-        },
-    });
-
-    if(!user) throw new Error("User not found");
+    const user = await checkAuth();
 
      const prompt = 
       `Generate 10 technical interview questions for a 
@@ -130,14 +122,7 @@ export async function saveQuizResult(questions, answers, score){
 }
 
 export async function getAssessments() {
-  const {userId} = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
-  if (!user) throw new Error("User not found");
+  const user = await checkAuth();
 
   try {
     const assessments = await db.assessment.findMany({
