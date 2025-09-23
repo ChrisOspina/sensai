@@ -23,6 +23,7 @@ import { entriesToMarkdown } from "@/app/lib/helper";
 import MDEditor from "@uiw/react-md-editor";
 import { useUser } from "@clerk/nextjs";
 import html2pdf from "html2pdf.js";
+import { toast } from "sonner";
 
 const ResumeBuilder = ({ initialContent }) => {
   const [activeTab, setActiveTab] = useState("edit");
@@ -98,8 +99,21 @@ const ResumeBuilder = ({ initialContent }) => {
       .join("\n\n");
   };
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  useEffect(() => {
+    if (saveResult && !isSaving) {
+      toast.success("Resume saved successfully");
+    }
+    if (saveError) {
+      toast.error(saveError.message || "Failed to save resume");
+    }
+  }, [saveResult, saveError, isSaving]);
+
+  const onSubmit = async () => {
+    try {
+      await saveResumeFn(previewContent);
+    } catch (error) {
+      console.error("Save error:", error);
+    }
   };
 
   const generatePDF = async () => {
@@ -117,6 +131,7 @@ const ResumeBuilder = ({ initialContent }) => {
       await html2pdf().set(options).from(element).save();
     } catch (error) {
       console.error("PDF generation error:", error);
+      toast.error("This functionality is broken");
     } finally {
       setIsGenerating(false);
     }
@@ -130,9 +145,22 @@ const ResumeBuilder = ({ initialContent }) => {
         </h1>
 
         <div className="space-x-2">
-          <Button variant={"destructive"}>
-            <Save className="h-4 w-4" />
-            Save
+          <Button
+            variant={"destructive"}
+            onClick={onSubmit}
+            disabled={isSaving}
+          >
+            {isSaving ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Save className="h-4 w-4" />
+                Save
+              </>
+            )}
           </Button>
           <Button onClick={generatePDF} disabled={isGenerating}>
             {isGenerating ? (
@@ -156,7 +184,7 @@ const ResumeBuilder = ({ initialContent }) => {
           <TabsTrigger value="preview">Markdown</TabsTrigger>
         </TabsList>
         <TabsContent value="edit">
-          <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
+          <form className="space-y-8">
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Contact information</h3>
               <div
@@ -373,8 +401,8 @@ const ResumeBuilder = ({ initialContent }) => {
               <MDEditor.Markdown
                 source={previewContent}
                 style={{
-                  background: "white",
-                  color: "black",
+                  background: (255, 255, 255),
+                  color: (0, 0, 0),
                 }}
               />
             </div>
