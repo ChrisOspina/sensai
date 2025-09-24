@@ -9,7 +9,7 @@ import {
   Monitor,
   Save,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,7 +22,7 @@ import EntryForm from "./entry-form";
 import { entriesToMarkdown } from "@/app/lib/helper";
 import MDEditor from "@uiw/react-md-editor";
 import { useUser } from "@clerk/nextjs";
-import html2pdf from "html2pdf.js/dist/html2pdf.bundle";
+import { useReactToPrint } from "react-to-print";
 import { toast } from "sonner";
 
 const ResumeBuilder = ({ initialContent }) => {
@@ -31,11 +31,11 @@ const ResumeBuilder = ({ initialContent }) => {
   const [previewContent, setPreviewContent] = useState(initialContent);
   const { user } = useUser();
   const [isGenerating, setIsGenerating] = useState(false);
+  const resumeRef = useRef();
 
   const {
     control,
     register,
-    handleSubmit,
     watch,
     formState: { errors },
   } = useForm({
@@ -116,19 +116,24 @@ const ResumeBuilder = ({ initialContent }) => {
     }
   };
 
+  const reactToPrintFn = useReactToPrint({
+    contentRef: resumeRef,
+    documentTitle: "resume",
+    removeAfterPrint: false,
+  });
+
   const generatePDF = async () => {
     setIsGenerating(true);
     try {
-      const element = document.getElementById("resume-pdf");
-      const options = {
-        margin: [15, 15],
-        filename: "resume.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      };
-
-      await html2pdf().set(options).from(element).save();
+      console.log("printing");
+      await new Promise((resolve, reject) => {
+        try {
+          reactToPrintFn?.();
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      });
     } catch (error) {
       console.error("PDF generation error:", error);
       toast.error("This functionality is broken");
@@ -397,12 +402,12 @@ const ResumeBuilder = ({ initialContent }) => {
             />
           </div>
           <div className="hidden">
-            <div id="resume-pdf">
+            <div ref={resumeRef}>
               <MDEditor.Markdown
                 source={previewContent}
                 style={{
-                  background: (255, 255, 255),
-                  color: (0, 0, 0),
+                  background: "white",
+                  color: "black",
                 }}
               />
             </div>
