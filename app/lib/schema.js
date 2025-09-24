@@ -62,3 +62,7 @@ export const resumeSchema = z.object({
     education: z.array(entrySchema),
     projects: z.array(entrySchema),
 });
+
+export const coverLetterSchema = z.object({
+
+});

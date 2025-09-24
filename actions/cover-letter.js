@@ -1,4 +1,4 @@
-"use Server";
+"use server";
 
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/prisma";
@@ -39,7 +39,6 @@ export async function generateCoverLetter(data){
   `;
 
   try{
-    //TODO cover letter generation logic
     const result = await model.generateContent(prompt);
     const content = result.response.text().trim();
 

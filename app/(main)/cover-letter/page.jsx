@@ -3,6 +3,7 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import CoverLetterList from "./components/cover-letter-list";
+import { getCoverLetters } from "@/actions/cover-letter";
 
 const CoverLetterPage = async () => {
   const coverLetters = await getCoverLetters();
