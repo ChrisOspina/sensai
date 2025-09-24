@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const CoverLetterList = async ({ coverLetters }) => {
+const CoverLetterList = ({ coverLetters }) => {
   const router = useRouter();
 
   const handleDelete = async (id) => {

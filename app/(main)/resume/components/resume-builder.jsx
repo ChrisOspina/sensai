@@ -22,7 +22,7 @@ import EntryForm from "./entry-form";
 import { entriesToMarkdown } from "@/app/lib/helper";
 import MDEditor from "@uiw/react-md-editor";
 import { useUser } from "@clerk/nextjs";
-import html2pdf from "html2pdf.js";
+import html2pdf from "html2pdf.js/dist/html2pdf.bundle";
 import { toast } from "sonner";
 
 const ResumeBuilder = ({ initialContent }) => {

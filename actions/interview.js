@@ -98,7 +98,6 @@ export async function saveQuizResult(questions, answers, score){
     }
     catch(error){
         console.error("Error generating improvement tip:", error);
-      // Continue without improvement tip if generation fails
     }
     }
 

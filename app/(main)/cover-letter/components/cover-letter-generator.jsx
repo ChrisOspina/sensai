@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import useFetch from "@/hooks/use-fetch";
 import { generateCoverLetter } from "@/actions/cover-letter";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const CoverLetterGenerator = () => {
   const router = useRouter();
@@ -37,6 +38,14 @@ const CoverLetterGenerator = () => {
     fn: generateLetterFn,
     data: generatedLetter,
   } = useFetch(generateCoverLetter);
+
+  useEffect(() => {
+    if (generatedLetter) {
+      toast.success("Cover Letter generated successfully");
+      router.push(`/cover-letter/${generatedLetter.id}`);
+      reset();
+    }
+  }, [generatedLetter]);
 
   const onSubmit = async (data) => {
     try {
