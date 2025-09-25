@@ -1,7 +1,7 @@
 # Sensai AI
 
 ## Overview
-Sensai AI is a Next.JS based career coach that uses machine learning to help you with your job search. 
+Sensai AI is a Next.js-powered career coach that leverages machine learning to guide your job search, offering personalized insights and support to help you land your next opportunity.
 
 The application contains the following features
 * Industry Insights
@@ -9,8 +9,18 @@ The application contains the following features
 * Interview Prep
 * Cover Letter Generator
 
+**Disclaimer** : The project was developed from a YouTube Tutorial via https://www.youtube.com/watch?v=UbXpRv5ApKA
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Technologies used
+* Next.js
+* Clerk
+* Prisma DB
+* Innggest AI
+* PostgresSQL
+* Google Gemini AI
+* recharts
+* ReactToPrint
+* TailwindCSS
 
 ## Getting Started
 
@@ -25,7 +35,20 @@ pnpm dev
 # or
 bun dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+**Enviromnent variables may vary**
+
+## Industry Insights
+
+
+
+
+## Resume Builder
+
+
+## Interview Prep
+
+
+## Cover Letter Generator
 
