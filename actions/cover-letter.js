@@ -12,13 +12,6 @@ const model = genAI.getGenerativeModel({
 export async function generateCoverLetter(data){
      const user = await checkAuth();
 
-     if(user){
-      console.log("user is authenticated");
-     }
-     else{
-      console.error("Rewrite the code to check the user manually");
-     }
-
      const prompt =`  Write a professional cover letter for a ${data.jobTitle} position at ${data.companyName}.
     
             About the candidate:

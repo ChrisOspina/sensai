@@ -14,7 +14,7 @@ const NewCoverLetterPage = () => {
             Back to Cover Letters
           </Button>
         </Link>
-        <div>
+        <div className="space-y-8">
           <h1 className="text-6xl font-bold gradient-title">
             Create Cover Letter
           </h1>
@@ -23,7 +23,6 @@ const NewCoverLetterPage = () => {
           </p>
         </div>
       </div>
-
       <CoverLetterGenerator />
     </div>
   );

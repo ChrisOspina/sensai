@@ -9,7 +9,7 @@ const CoverLetterPage = async () => {
   const coverLetters = await getCoverLetters();
   return (
     <div>
-      <div className="space-y-4">
+      <div className="space-y-8">
         <h1 className="text-6xl font-bold gradient-title">My Cover Letters</h1>
         <Link href="/cover-letter/new">
           <Button>
@@ -17,7 +17,7 @@ const CoverLetterPage = async () => {
             Create New
           </Button>
         </Link>
-
+        <div className="space-y-8" />
         <CoverLetterList coverLetters={coverLetters} />
       </div>
     </div>

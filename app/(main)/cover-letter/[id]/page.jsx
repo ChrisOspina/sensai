@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import CoverLetterPreview from "../components/cover-letter-preview";
+import { Button } from "@/components/ui/button";
 
 const EditCoverLetterPage = async ({ params }) => {
   const { id } = await params;

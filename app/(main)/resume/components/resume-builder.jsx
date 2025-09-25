@@ -7,6 +7,7 @@ import {
   Edit,
   Loader2,
   Monitor,
+  Printer,
   Save,
 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
@@ -175,8 +176,8 @@ const ResumeBuilder = ({ initialContent }) => {
               </>
             ) : (
               <>
-                <Download className="h-4 w-4" />
-                Download PDF
+                <Printer className="h-4 w-4" />
+                Print
               </>
             )}
           </Button>
