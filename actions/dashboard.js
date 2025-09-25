@@ -1,5 +1,5 @@
 
-"use server"
+"use server";
 
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/prisma";
@@ -65,11 +65,9 @@ export async function getIndustryInsights(){
                     nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                 },
             });
-            return industryInsight;
-         
+            return industryInsight;  
         };
-
+        
         return user.industryInsight;
-
     }
     

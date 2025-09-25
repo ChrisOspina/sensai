@@ -2,21 +2,12 @@
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { generateAIInsights } from "./dashboard";
+import { checkAuth } from "./check-auth";
 
 export async function updateUser(data){
-    const {userId} = await auth();
-    if(!userId) throw new Error("Unauthorized");
-
-    const user = await db.user.findUnique({
-        where:{
-            clerkUserId: userId,
-        },
-    });
-
-    if(!user) throw new Error("User not found");
+    const user = await checkAuth();
 
     try{
-
         const result = await db.$transaction(
             async(tx)=>{
                 let industryInsight = await tx.industryInsight.findUnique({
@@ -51,7 +42,6 @@ export async function updateUser(data){
             },
         });
             return {updatedUser, industryInsight};
-
             },
             {
                 timeout:10000,
@@ -59,7 +49,6 @@ export async function updateUser(data){
         );
 
         return {success: true, ...result};
-
     }
     catch(error){
         console.error("Error updating user and industry:", error.message);
@@ -95,6 +84,4 @@ export async function getUserOnboardingStatus(){
     console.error("Error checking onboarding status:", error);
     throw new Error("Failed to check onboarding status");
   }
-
-
 }
