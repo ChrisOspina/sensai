@@ -8,6 +8,7 @@ const nextConfig = {
         },
     ],
     },
+    transpilePackages: ['@prisma/client'],
 };
 
 export default nextConfig;
