@@ -82,7 +82,7 @@ The Third section contains a sub form that prompts the user to input relevant wo
 - End Date
 - Job Description
 
-The Fourth section is similar but for education with fields containing
+The Fourth section is similar but for education with fields containing:
  - Degree
  - School Name
  - Start Date
@@ -90,10 +90,26 @@ The Fourth section is similar but for education with fields containing
  - Description
 
 The Fifth section is the same for projects
+ - Project name
+ - Description
+ - Start Date
+ - End Date
 
+**Note: The descriptions could be edited with AI**
 
 ## Interview Prep
 
+<img width="1677" height="824" alt="image" src="https://github.com/user-attachments/assets/c268f8e3-0005-427c-83bd-6ca46ac7310f" />
+
+This section allows users to test their knowledge of industry insights and skills by completing practice interview quizzes. The Inngest service automatically generates a score along with feedback to help users identify areas for improvement.
+The accompanying dashboard provides a clear overview of user performance, including:
+- Total Questions Practiced – cumulative count of attempted quiz questions
+- Average Score – overall performance across all quizzes
+- Latest Score – most recent quiz result
+- Performance Trend – progress visualization over time
+- Recent Quizzes – history of the latest completed quizzes
+
 
 ## Cover Letter Generator
+<img width="1881" height="748" alt="image" src="https://github.com/user-attachments/assets/6f3a0d83-d35c-4bac-8045-94fa28c57fc3" />
 
