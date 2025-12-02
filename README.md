@@ -9,11 +9,12 @@ The application contains the following features
 * Interview Prep
 * Cover Letter Generator
 
-**Disclaimer** : The project was developed from a YouTube Tutorial via https://www.youtube.com/watch?v=UbXpRv5ApKA
+**Disclaimer** : The project was developed from a YouTube Tutorial via https://www.youtube.com/watch?v=UbXpRv5ApKA but with Anispo branding
 
 ### Technologies used
 * Next.js
 * Clerk
+* Neon DB
 * Prisma DB
 * Innggest AI
 * PostgresSQL
@@ -21,6 +22,8 @@ The application contains the following features
 * recharts
 * ReactToPrint
 * TailwindCSS
+* ShadcnUI
+* Vercel
 
 ## Getting Started
 
@@ -112,4 +115,13 @@ The accompanying dashboard provides a clear overview of user performance, includ
 
 ## Cover Letter Generator
 <img width="1881" height="748" alt="image" src="https://github.com/user-attachments/assets/6f3a0d83-d35c-4bac-8045-94fa28c57fc3" />
+
+With Anipso Systems and the Inngest AI connector, users can generate tailored cover letters directly within our career-certified platform—eliminating the need for generic templates or manual drafting.
+Workflow:
+- Enter the company name
+- Provide the position title
+- Paste the job description into the text box
+Within moments, the AI produces a customized cover letter aligned to the target role. The generated document is automatically stored in the Neon Database and can be printed or downloaded for personal use.
+
+
 
