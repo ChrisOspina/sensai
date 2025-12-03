@@ -143,6 +143,8 @@ const ResumeBuilder = ({ initialContent }) => {
     }
   };
 
+  setActiveTab("edit");
+
   return (
     <div className="space-y-4">
       <div className="flex flex-col md:flex-row justify-between items-center gap-2">
