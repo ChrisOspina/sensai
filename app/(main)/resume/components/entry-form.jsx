@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Loader2, Plus, PlusCircle, Sparkles, X } from "lucide-react";
+import { Loader2, PlusCircle, Sparkles, X } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -141,7 +141,7 @@ const EntryForm = ({ type, entries, onChange }) => {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Input
-                  placeholder="Title/Position"
+                  placeholder="Title/Degree/Project Name"
                   {...register("title")}
                   error={errors.title}
                 />
@@ -151,7 +151,7 @@ const EntryForm = ({ type, entries, onChange }) => {
               </div>
               <div className="space-y-2">
                 <Input
-                  placeholder="Organization/Company"
+                  placeholder="Organization/School"
                   {...register("organization")}
                   error={errors.organization}
                 />
