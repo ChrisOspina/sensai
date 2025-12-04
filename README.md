@@ -124,4 +124,54 @@ Workflow:
 Within moments, the AI produces a customized cover letter aligned to the target role. The generated document is automatically stored in the Neon Database and can be printed or downloaded for personal use.
 
 
+## System Archictecture Diagram
+
+The architecture diagram illustrates how different components of the AI career coach interact:
+
+<img width="1536" height="1024" alt="Architecture diagram" src="https://github.com/user-attachments/assets/041bb3b1-8114-496b-9e08-4ddc3c92793e" />
+
+Components
+- User: The end-user accessing the platform via a web or mobile client.
+- Frontend Client: The user interface built with modern web technologies, responsible for collecting input and displaying AI-driven insights.
+- Backend Server: Handles business logic, API routing, and orchestrates communication between services.
+- Prisma Database: Stores user profiles, assessments, resumes, cover letters, and industry insights. Also serves as a data source for AI prompts.
+- Google Gemini API: Provides AI capabilities such as resume feedback, interview coaching, and skill recommendations.
+- Inngest: Manages background tasks and event-driven workflows (e.g., scoring assessments, scheduling updates).
+Flow
+- Users interact with the Frontend Client.
+- The client sends requests to the Backend Server.
+- The server queries the Prisma Database and optionally invokes the Google Gemini API for AI responses.
+- Inngest handles asynchronous tasks like generating improvement tips or updating industry insights.
+
+<hr/>
+
+## Class Diagram for Prisma Database
+
+This UML-style class diagram outlines the relational structure of the Prisma schema:
+
+<img width="1536" height="1024" alt="class diagram" src="https://github.com/user-attachments/assets/1a670803-600f-4028-b914-2e2da142db5a" />
+
+
+### Key Models
+#### User
+- Stores personal info, skills, experience, and links to assessments, resume, and cover letters.
+- Optionally linked to an IndustryInsight for contextual career data.
+#### Assessment
+- Contains quiz results, categorized by type (e.g., technical, behavioral).
+- Includes AI-generated feedback and question-level analytics.
+#### Resume
+- One-to-one relationship with User.
+- Stores markdown content, ATS score, and feedback.
+#### CoverLetter
+- One-to-many relationship with User.
+- Tracks job-specific letters, status (draft/completed), and metadata.
+- IndustryInsight
+- Aggregates industry-level data like salary ranges, growth rate, demand level, and recommended skills.
+- Linked to multiple users via the industry field.
+### Enums
+- DemandLevel: HIGH, MEDIUM, LOW
+- MarketOutlook: POSITIVE, NEUTRAL, NEGATIVE
+
+
+
 
