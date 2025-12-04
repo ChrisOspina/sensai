@@ -170,8 +170,14 @@ This UML-style class diagram outlines the relational structure of the Prisma sch
 - Aggregates industry-level data like salary ranges, growth rate, demand level, and recommended skills.
 - Linked to multiple users via the industry field.
 ### Enums
-- DemandLevel: HIGH, MEDIUM, LOW
-- MarketOutlook: POSITIVE, NEUTRAL, NEGATIVE
+  #### DemandLevel: 
+   - HIGH
+   - MEDIUM
+   - LOW
+ #### MarketOutlook: 
+ - POSITIVE
+ - NEUTRAL
+ - NEGATIVE
 
 
 
