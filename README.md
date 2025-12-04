@@ -130,14 +130,15 @@ The architecture diagram illustrates how different components of the AI career c
 
 <img width="1536" height="1024" alt="Architecture diagram" src="https://github.com/user-attachments/assets/041bb3b1-8114-496b-9e08-4ddc3c92793e" />
 
-Components
+### Components
 - User: The end-user accessing the platform via a web or mobile client.
 - Frontend Client: The user interface built with modern web technologies, responsible for collecting input and displaying AI-driven insights.
 - Backend Server: Handles business logic, API routing, and orchestrates communication between services.
 - Prisma Database: Stores user profiles, assessments, resumes, cover letters, and industry insights. Also serves as a data source for AI prompts.
 - Google Gemini API: Provides AI capabilities such as resume feedback, interview coaching, and skill recommendations.
 - Inngest: Manages background tasks and event-driven workflows (e.g., scoring assessments, scheduling updates).
-Flow
+
+### Flow
 - Users interact with the Frontend Client.
 - The client sends requests to the Backend Server.
 - The server queries the Prisma Database and optionally invokes the Google Gemini API for AI responses.
