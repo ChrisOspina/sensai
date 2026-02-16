@@ -9,6 +9,7 @@ import {
   GraduationCap,
   LayoutDashboard,
   PenBox,
+  Spool,
   StarsIcon,
 } from "lucide-react";
 import {
@@ -62,6 +63,15 @@ const Header = async () => {
                   >
                     <FileText className="h-4 w-4" />
                     <span className="hidden md:block">Build Resume</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link
+                    href={"/resume-tailor"}
+                    className="flex items-center space-x-2"
+                  >
+                    <Spool className="h-4 w-4" />
+                    <span className="hidden md:block">Tailor Your Resume</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
