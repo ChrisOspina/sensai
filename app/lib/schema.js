@@ -70,3 +70,14 @@ export const coverLetterSchema = z.object({
   jobTitle: z.string().min(1, "Job title is required"),
   jobDescription: z.string().min(1, "Job description is required"),
 });
+
+export const tailoredResumeSchema = z.object({
+  companyName: z.string().min(1, "Company name is required"),
+  jobTitle: z.string().min(1, "Job title is required"),
+  jobDescription: z.string().min(1, "Job description is required"),
+  resumeSource: z.enum(["upload", "existing"], {
+    required_error: "Please select a resume source",
+  }),
+  resumeFile: z.any().optional(), // File object for uploaded resume
+  resumeText: z.string().optional(), // Text content from uploaded file or existing resume
+});
